@@ -2,7 +2,8 @@
 
 > A decentralized identity system powered by NFTs, ensuring trust, security, and ownership in the digital age.
 
-![NFT Identity Banner](./assets/banner.png)
+![image](https://github.com/user-attachments/assets/e9fc954d-7012-40a5-bc68-b81fb9c246b7)
+
 
 ## 🌟 Overview
 
