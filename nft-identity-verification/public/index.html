@@ -148,9 +148,265 @@
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
+
+      .feature-banner {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px 0;
+        max-width: 800px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .status-banner {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        z-index: 1000;
+      }
+
+      .footer-banner {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px 0;
+        font-size: 0.9em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        max-width: 1200px;
+        width: 90%;
+        margin-bottom: 20px;
+      }
+
+      .footer-section {
+        text-align: left;
+      }
+
+      .footer-section h4 {
+        color: #fff;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin: 8px 0;
+      }
+
+      .footer-links a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .footer-links a:hover {
+        color: #23a6d5;
+        transform: translateX(5px);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icon {
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-minimize {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        border: none;
+        border-radius: 20px;
+        padding: 5px 20px;
+        color: white;
+        cursor: pointer;
+        font-size: 0.8em;
+      }
+
+      .footer-banner.minimized {
+        transform: translateY(calc(100% - 40px));
+      }
+
+      @keyframes pulseButton {
+        0% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.05); }
+        100% { transform: translateX(-50%) scale(1); }
+      }
+
+      .footer-minimize:hover {
+        animation: pulseButton 1s infinite;
+      }
+
+      .latest-verifications {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .verification-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 10px;
+      }
+
+      .verification-item {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 10px;
+        min-width: 200px;
+        backdrop-filter: blur(5px);
+      }
+
+      .stats-section {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .stat-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: #23d5ab;
+      }
+
+      .news-section {
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .news-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .partners-section {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .partner-logos {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin: 20px 0;
+      }
+
+      .partner-logo {
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .partner-logo:hover {
+        transform: scale(1.1);
+      }
     </style>
   </head>
   <body>
+    <div class="status-banner">
+      Network Status: Connected to Ethereum
+    </div>
+
     <div class="crypto-banner">
       <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Ethereum Logo" class="crypto-icon">
       <h1>NFT-Based Digital Identity Verification</h1>
@@ -158,6 +414,45 @@
         <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" alt="Bitcoin" class="crypto-icon">
         <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Ethereum" class="crypto-icon">
         <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Polygon" class="crypto-icon">
+      </div>
+    </div>
+
+    <div class="feature-banner">
+      <h2>Why Choose NFT Identity Verification?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Secure</h3>
+          <p>Blockchain-backed verification system</p>
+        </div>
+        <div class="feature-card">
+          <h3>Decentralized</h3>
+          <p>No central authority needed</p>
+        </div>
+        <div class="feature-card">
+          <h3>Immutable</h3>
+          <p>Tamper-proof identity records</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="latest-verifications">
+      <h2>Latest Verifications</h2>
+      <div class="verification-list">
+        <div class="verification-item">
+          <h4>Identity #1234</h4>
+          <p>Verified: 2 mins ago</p>
+          <small>0x1234...5678</small>
+        </div>
+        <div class="verification-item">
+          <h4>Identity #1235</h4>
+          <p>Verified: 5 mins ago</p>
+          <small>0x5678...9012</small>
+        </div>
+        <div class="verification-item">
+          <h4>Identity #1236</h4>
+          <p>Verified: 10 mins ago</p>
+          <small>0x9012...3456</small>
+        </div>
       </div>
     </div>
 
@@ -171,6 +466,111 @@
           <button onclick="checkVerification()">Check Verification</button>
       </div>
     </div>
+
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-number">10K+</div>
+        <p>Verified Users</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">99.9%</div>
+        <p>Success Rate</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <p>Partners</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <p>Support</p>
+      </div>
+    </div>
+
+    <div class="feature-banner">
+      <h2>How It Works</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Step 1</h3>
+          <p>Connect your wallet</p>
+        </div>
+        <div class="feature-card">
+          <h3>Step 2</h3>
+          <p>Verify your identity</p>
+        </div>
+        <div class="feature-card">
+          <h3>Step 3</h3>
+          <p>Receive your NFT certificate</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-section">
+      <h2>Latest Updates</h2>
+      <div class="news-grid">
+        <div class="news-card">
+          <h3>New Partnership</h3>
+          <p>Major collaboration with leading blockchain companies announced</p>
+          <small>2 hours ago</small>
+        </div>
+        <div class="news-card">
+          <h3>Security Update</h3>
+          <p>Enhanced verification protocols implemented</p>
+          <small>1 day ago</small>
+        </div>
+        <div class="news-card">
+          <h3>Community Growth</h3>
+          <p>Reached 10,000 verified users milestone</p>
+          <small>3 days ago</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="partners-section">
+      <h2>Our Partners</h2>
+      <div class="partner-logos">
+        <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Partner 1" class="partner-logo">
+        <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Partner 2" class="partner-logo">
+        <img src="https://cryptologos.cc/logos/chainlink-link-logo.svg" alt="Partner 3" class="partner-logo">
+        <img src="https://cryptologos.cc/logos/uniswap-uni-logo.svg" alt="Partner 4" class="partner-logo">
+      </div>
+    </div>
+
+    <div class="footer-banner">
+      <button class="footer-minimize" onclick="toggleFooter()">↑</button>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#"><span>🏠</span> Home</a></li>
+            <li><a href="#"><span>📖</span> About</a></li>
+            <li><a href="#"><span>📱</span> Contact</a></li>
+            <li><a href="#"><span>❓</span> FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#"><span>📄</span> Documentation</a></li>
+            <li><a href="#"><span>🔒</span> Privacy Policy</a></li>
+            <li><a href="#"><span>📜</span> Terms of Service</a></li>
+            <li><a href="#"><span>🎯</span> Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Connect With Us</h4>
+          <div class="social-links">
+            <a href="#" class="social-icon" title="Twitter">𝕏</a>
+            <a href="#" class="social-icon" title="Discord">𝔻</a>
+            <a href="#" class="social-icon" title="GitHub">𝔾</a>
+            <a href="#" class="social-icon" title="LinkedIn">𝕃</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>Powered by Ethereum Blockchain | © 2023 NFT Identity Verification</p>
+      </div>
+    </div>
+
     <script>
         async function verifyUser() {
             const address = document.getElementById('address').value;
@@ -191,6 +591,24 @@
             const data = await response.json();
             alert(data.isVerified ? 'User is verified' : 'User is not verified');
         }
+
+        function toggleFooter() {
+          const footer = document.querySelector('.footer-banner');
+          const button = document.querySelector('.footer-minimize');
+          footer.classList.toggle('minimized');
+          button.textContent = footer.classList.contains('minimized') ? '↓' : '↑';
+        }
+
+        // Auto-update verification timestamps
+        function updateTimestamps() {
+          const times = document.querySelectorAll('.verification-item p');
+          times.forEach(time => {
+            const minutes = parseInt(time.textContent.split(' ')[1]) + 1;
+            time.textContent = `Verified: ${minutes} mins ago`;
+          });
+        }
+        
+        setInterval(updateTimestamps, 60000);
     </script>
   </body>
 </html>
