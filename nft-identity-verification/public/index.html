@@ -190,117 +190,6 @@
         z-index: 1000;
       }
 
-      .footer-banner {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 20px 0;
-        font-size: 0.9em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: transform 0.3s ease;
-      }
-
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        max-width: 1200px;
-        width: 90%;
-        margin-bottom: 20px;
-      }
-
-      .footer-section {
-        text-align: left;
-      }
-
-      .footer-section h4 {
-        color: #fff;
-        margin-bottom: 15px;
-        font-size: 1.1em;
-      }
-
-      .footer-links {
-        list-style: none;
-        padding: 0;
-      }
-
-      .footer-links li {
-        margin: 8px 0;
-      }
-
-      .footer-links a {
-        color: #fff;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .footer-links a:hover {
-        color: #23a6d5;
-        transform: translateX(5px);
-      }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
-      }
-
-      .social-icon {
-        width: 30px;
-        height: 30px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-      }
-
-      .social-icon:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-3px);
-      }
-
-      .copyright {
-        width: 100%;
-        text-align: center;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .footer-minimize {
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.8);
-        border: none;
-        border-radius: 20px;
-        padding: 5px 20px;
-        color: white;
-        cursor: pointer;
-        font-size: 0.8em;
-      }
-
-      .footer-banner.minimized {
-        transform: translateY(calc(100% - 40px));
-      }
-
-      @keyframes pulseButton {
-        0% { transform: translateX(-50%) scale(1); }
-        50% { transform: translateX(-50%) scale(1.05); }
-        100% { transform: translateX(-50%) scale(1); }
-      }
-
-      .footer-minimize:hover {
-        animation: pulseButton 1s infinite;
-      }
-
       .latest-verifications {
         background: rgba(255, 255, 255, 0.1);
         border-radius: 15px;
@@ -400,6 +289,32 @@
       .partner-logo:hover {
         transform: scale(1.1);
       }
+
+      .metamask-button {
+        background: linear-gradient(45deg, #FF8C00, #FFD700);
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      .metamask-button img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .wallet-info {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px 20px;
+        border-radius: 10px;
+        margin: 10px 0;
+        display: none;
+      }
+
+      .wallet-info.visible {
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -457,117 +372,19 @@
     </div>
 
     <div class="verification-container">
+      <button id="connectWallet" class="metamask-button">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask">
+        Connect MetaMask
+      </button>
+      
+      <div id="walletInfo" class="wallet-info">
+        <p>Connected Address: <span id="userAddress"></span></p>
+        <button onclick="verifyWithMetaMask()">Verify Identity</button>
+      </div>
+
       <div>
-          <input type="text" id="address" placeholder="Enter your address">
-          <button onclick="verifyUser()">Verify</button>
-      </div>
-      <div>
-          <input type="text" id="checkAddress" placeholder="Enter address to check">
-          <button onclick="checkVerification()">Check Verification</button>
-      </div>
-    </div>
-
-    <div class="stats-section">
-      <div class="stat-card">
-        <div class="stat-number">10K+</div>
-        <p>Verified Users</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">99.9%</div>
-        <p>Success Rate</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">50+</div>
-        <p>Partners</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">24/7</div>
-        <p>Support</p>
-      </div>
-    </div>
-
-    <div class="feature-banner">
-      <h2>How It Works</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h3>Step 1</h3>
-          <p>Connect your wallet</p>
-        </div>
-        <div class="feature-card">
-          <h3>Step 2</h3>
-          <p>Verify your identity</p>
-        </div>
-        <div class="feature-card">
-          <h3>Step 3</h3>
-          <p>Receive your NFT certificate</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="news-section">
-      <h2>Latest Updates</h2>
-      <div class="news-grid">
-        <div class="news-card">
-          <h3>New Partnership</h3>
-          <p>Major collaboration with leading blockchain companies announced</p>
-          <small>2 hours ago</small>
-        </div>
-        <div class="news-card">
-          <h3>Security Update</h3>
-          <p>Enhanced verification protocols implemented</p>
-          <small>1 day ago</small>
-        </div>
-        <div class="news-card">
-          <h3>Community Growth</h3>
-          <p>Reached 10,000 verified users milestone</p>
-          <small>3 days ago</small>
-        </div>
-      </div>
-    </div>
-
-    <div class="partners-section">
-      <h2>Our Partners</h2>
-      <div class="partner-logos">
-        <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Partner 1" class="partner-logo">
-        <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Partner 2" class="partner-logo">
-        <img src="https://cryptologos.cc/logos/chainlink-link-logo.svg" alt="Partner 3" class="partner-logo">
-        <img src="https://cryptologos.cc/logos/uniswap-uni-logo.svg" alt="Partner 4" class="partner-logo">
-      </div>
-    </div>
-
-    <div class="footer-banner">
-      <button class="footer-minimize" onclick="toggleFooter()">↑</button>
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="#"><span>🏠</span> Home</a></li>
-            <li><a href="#"><span>📖</span> About</a></li>
-            <li><a href="#"><span>📱</span> Contact</a></li>
-            <li><a href="#"><span>❓</span> FAQ</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Resources</h4>
-          <ul class="footer-links">
-            <li><a href="#"><span>📄</span> Documentation</a></li>
-            <li><a href="#"><span>🔒</span> Privacy Policy</a></li>
-            <li><a href="#"><span>📜</span> Terms of Service</a></li>
-            <li><a href="#"><span>🎯</span> Support</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Connect With Us</h4>
-          <div class="social-links">
-            <a href="#" class="social-icon" title="Twitter">𝕏</a>
-            <a href="#" class="social-icon" title="Discord">𝔻</a>
-            <a href="#" class="social-icon" title="GitHub">𝔾</a>
-            <a href="#" class="social-icon" title="LinkedIn">𝕃</a>
-          </div>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>Powered by Ethereum Blockchain | © 2023 NFT Identity Verification</p>
+        <input type="text" id="checkAddress" placeholder="Enter address to check">
+        <button onclick="checkVerification()">Check Verification</button>
       </div>
     </div>
 
@@ -592,13 +409,6 @@
             alert(data.isVerified ? 'User is verified' : 'User is not verified');
         }
 
-        function toggleFooter() {
-          const footer = document.querySelector('.footer-banner');
-          const button = document.querySelector('.footer-minimize');
-          footer.classList.toggle('minimized');
-          button.textContent = footer.classList.contains('minimized') ? '↓' : '↑';
-        }
-
         // Auto-update verification timestamps
         function updateTimestamps() {
           const times = document.querySelectorAll('.verification-item p');
@@ -609,6 +419,76 @@
         }
         
         setInterval(updateTimestamps, 60000);
+
+        let userAccount = null;
+
+        async function connectWallet() {
+          if (typeof window.ethereum === 'undefined') {
+            alert('Please install MetaMask to use this feature!');
+            return;
+          }
+
+          try {
+            const accounts = await window.ethereum.request({ 
+              method: 'eth_requestAccounts' 
+            });
+            userAccount = accounts[0];
+            document.getElementById('userAddress').textContent = userAccount;
+            document.getElementById('walletInfo').classList.add('visible');
+            document.getElementById('connectWallet').style.display = 'none';
+            
+            // Listen for account changes
+            window.ethereum.on('accountsChanged', function (accounts) {
+              userAccount = accounts[0];
+              document.getElementById('userAddress').textContent = userAccount;
+            });
+          } catch (error) {
+            console.error(error);
+            alert('Failed to connect wallet!');
+          }
+        }
+
+        async function verifyWithMetaMask() {
+          if (!userAccount) {
+            alert('Please connect your wallet first!');
+            return;
+          }
+
+          try {
+            // Request signature from user
+            const message = `Verify NFT Identity for address: ${userAccount}\nTimestamp: ${Date.now()}`;
+            const signature = await window.ethereum.request({
+              method: 'personal_sign',
+              params: [message, userAccount]
+            });
+
+            // Send verification request to backend
+            const response = await fetch('/verify', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ 
+                address: userAccount,
+                signature,
+                message
+              })
+            });
+
+            const data = await response.json();
+            if (data.error) {
+              throw new Error(data.error);
+            }
+            
+            alert('Verification successful! NFT minted to your address.');
+          } catch (error) {
+            console.error(error);
+            alert('Verification failed: ' + error.message);
+          }
+        }
+
+        // Initialize wallet connection button
+        document.getElementById('connectWallet').addEventListener('click', connectWallet);
     </script>
   </body>
 </html>
