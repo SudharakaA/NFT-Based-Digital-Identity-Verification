@@ -315,6 +315,104 @@
       .wallet-info.visible {
         display: block;
       }
+
+      .transaction-feed {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+        height: 300px;
+        overflow-y: auto;
+      }
+
+      .transaction-item {
+        background: rgba(255, 255, 255, 0.1);
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .testimonials {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .testimonial-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(5px);
+      }
+
+      .testimonial-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+
+      .faq-section {
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .faq-item {
+        background: rgba(255, 255, 255, 0.1);
+        margin: 10px 0;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        padding: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 200px;
+        padding: 20px;
+      }
+
+      .network-stats {
+        display: flex;
+        justify-content: space-around;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 15px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #23d5ab;
+      }
     </style>
   </head>
   <body>
@@ -385,6 +483,75 @@
       <div>
         <input type="text" id="checkAddress" placeholder="Enter address to check">
         <button onclick="checkVerification()">Check Verification</button>
+      </div>
+    </div>
+
+    <div class="network-stats">
+      <div class="stat-item">
+        <div class="stat-value">45.3 ETH</div>
+        <p>Total Value Locked</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">12,453</div>
+        <p>Verified Users</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">24.5k</div>
+        <p>Transactions</p>
+      </div>
+    </div>
+
+    <div class="transaction-feed">
+      <h2>Recent Transactions</h2>
+      <div class="transaction-item">
+        <span>Identity Verified</span>
+        <span>0x1234...5678</span>
+        <span>2 mins ago</span>
+      </div>
+      <div class="transaction-item">
+        <span>NFT Minted</span>
+        <span>0x8765...4321</span>
+        <span>5 mins ago</span>
+      </div>
+      <div class="transaction-item">
+        <span>Identity Updated</span>
+        <span>0x9876...1234</span>
+        <span>10 mins ago</span>
+      </div>
+    </div>
+
+    <div class="testimonials">
+      <div class="testimonial-card">
+        <img src="https://via.placeholder.com/60" alt="User" class="testimonial-avatar">
+        <h3>John Doe</h3>
+        <p>"The verification process was quick and secure. Highly recommended!"</p>
+      </div>
+      <div class="testimonial-card">
+        <img src="https://via.placeholder.com/60" alt="User" class="testimonial-avatar">
+        <h3>Jane Smith</h3>
+        <p>"Love how easy it is to manage my digital identity using NFTs."</p>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>What is NFT-based identity verification?</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>NFT-based identity verification uses blockchain technology to create unique, non-fungible tokens that represent your verified identity credentials.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span>How secure is the verification process?</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Our verification process uses blockchain technology and cryptographic signatures to ensure maximum security and immutability of your identity credentials.</p>
+        </div>
       </div>
     </div>
 
@@ -489,6 +656,38 @@
 
         // Initialize wallet connection button
         document.getElementById('connectWallet').addEventListener('click', connectWallet);
+
+        function toggleFAQ(element) {
+          const item = element.parentElement;
+          const wasActive = item.classList.contains('active');
+          
+          // Close all FAQ items
+          document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+            item.querySelector('.faq-question span:last-child').textContent = '+';
+          });
+
+          // Open clicked item if it wasn't active
+          if (!wasActive) {
+            item.classList.add('active');
+            element.querySelector('span:last-child').textContent = '-';
+          }
+        }
+
+        // Add real-time transaction updates
+        const ws = new WebSocket('ws://localhost:8080');
+        ws.onmessage = function(event) {
+          const transaction = JSON.parse(event.data);
+          const transactionFeed = document.querySelector('.transaction-feed');
+          const newItem = document.createElement('div');
+          newItem.className = 'transaction-item';
+          newItem.innerHTML = `
+            <span>${transaction.type}</span>
+            <span>${transaction.address.substr(0, 6)}...${transaction.address.substr(-4)}</span>
+            <span>Just now</span>
+          `;
+          transactionFeed.insertBefore(newItem, transactionFeed.firstChild);
+        };
     </script>
   </body>
 </html>
