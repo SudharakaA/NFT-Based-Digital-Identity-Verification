@@ -36,7 +36,7 @@ In an era where digital identity security is more critical than ever, we are bui
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/NFT-Based-Digital-Identity-Verification.git
+git clone https://github.com/SudharakaA/NFT-Based-Digital-Identity-Verification.git
 
 # Install dependencies
 cd NFT-Based-Digital-Identity-Verification
