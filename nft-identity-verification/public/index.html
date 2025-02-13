@@ -521,6 +521,163 @@
         font-size: 2em;
         margin-bottom: 10px;
       }
+
+      .verification-flow {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        border-radius: 15px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .flow-steps {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin: 40px 0;
+      }
+
+      .flow-step {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        flex: 1;
+      }
+
+      .step-number {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        font-weight: bold;
+      }
+
+      .flow-steps::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-50%);
+      }
+
+      .security-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .security-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(5px);
+        transition: transform 0.3s ease;
+      }
+
+      .security-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .chain-selector {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 15px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .chain-options {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+        overflow-x: auto;
+        padding: 10px 0;
+      }
+
+      .chain-option {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 120px;
+        text-align: center;
+      }
+
+      .chain-option.active {
+        background: rgba(35, 213, 171, 0.3);
+      }
+
+      .activity-timeline {
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .timeline-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px 0;
+        position: relative;
+      }
+
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        background: #23d5ab;
+        border-radius: 50%;
+      }
+
+      .network-chart {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 15px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      .chart-container {
+        height: 200px;
+        margin-top: 20px;
+        position: relative;
+      }
+
+      .chart-legend {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 15px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
     </style>
   </head>
   <body>
@@ -597,6 +754,53 @@
       </div>
     </div>
 
+    <div class="verification-flow">
+      <h2>Identity Verification Process</h2>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-number">1</div>
+          <p>Connect Wallet</p>
+        </div>
+        <div class="flow-step">
+          <div class="step-number">2</div>
+          <p>Sign Message</p>
+        </div>
+        <div class="flow-step">
+          <div class="step-number">3</div>
+          <p>Verify Identity</p>
+        </div>
+        <div class="flow-step">
+          <div class="step-number">4</div>
+          <p>Mint NFT</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="security-features">
+      <div class="security-card">
+        <h3>🔒 Encryption</h3>
+        <p>End-to-end encryption for all verification data</p>
+      </div>
+      <div class="security-card">
+        <h3>📝 Smart Contracts</h3>
+        <p>Audited and secure smart contract implementation</p>
+      </div>
+      <div class="security-card">
+        <h3>🔑 Key Management</h3>
+        <p>Secure private key handling and storage</p>
+      </div>
+    </div>
+
+    <div class="chain-selector">
+      <h2>Select Blockchain Network</h2>
+      <div class="chain-options">
+        <div class="chain-option active" onclick="switchChain('ethereum')">Ethereum</div>
+        <div class="chain-option" onclick="switchChain('polygon')">Polygon</div>
+        <div class="chain-option" onclick="switchChain('optimism')">Optimism</div>
+        <div class="chain-option" onclick="switchChain('arbitrum')">Arbitrum</div>
+      </div>
+    </div>
+
     <div class="block-info">
       <h2>Recent Block Information</h2>
       <div class="block-grid">
@@ -607,6 +811,37 @@
         <div class="block-item">
           <h3>Block Time</h3>
           <p id="blockTime">~13 seconds</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="activity-timeline">
+      <h2>Recent Network Activity</h2>
+      <div class="timeline-item">
+        <strong>Contract Deployment</strong>
+        <p>New identity verification contract deployed</p>
+        <small>2 hours ago</small>
+      </div>
+      <div class="timeline-item">
+        <strong>Protocol Update</strong>
+        <p>Verification mechanism upgraded</p>
+        <small>1 day ago</small>
+      </div>
+    </div>
+
+    <div class="network-chart">
+      <h2>Network Statistics</h2>
+      <div class="chart-container" id="networkChart">
+        <!-- Chart will be rendered here -->
+      </div>
+      <div class="chart-legend">
+        <div class="legend-item">
+          <div class="legend-color" style="background: #23d5ab"></div>
+          <span>Verifications</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #23a6d5"></div>
+          <span>Transactions</span>
         </div>
       </div>
     </div>
@@ -902,6 +1137,50 @@
         // Initial updates
         updateBlockchainInfo();
         updateGasPrices();
+
+        function switchChain(chain) {
+          document.querySelectorAll('.chain-option').forEach(option => {
+            option.classList.remove('active');
+          });
+          event.target.classList.add('active');
+          // Add chain switching logic here
+        }
+
+        // Add Chart.js for network statistics
+        async function initializeChart() {
+          const ctx = document.getElementById('networkChart');
+          if (typeof Chart !== 'undefined') {
+            new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                  label: 'Verifications',
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderColor: '#23d5ab',
+                  tension: 0.4
+                }, {
+                  label: 'Transactions',
+                  data: [15, 25, 5, 8, 4, 6],
+                  borderColor: '#23a6d5',
+                  tension: 0.4
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          }
+        }
+
+        // Initialize chart when page loads
+        window.addEventListener('load', initializeChart);
     </script>
   </body>
 </html>
