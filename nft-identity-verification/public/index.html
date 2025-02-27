@@ -678,6 +678,99 @@
         height: 12px;
         border-radius: 50%;
       }
+
+      .nft-details-form {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 800px;
+        width: 90%;
+        margin: 20px auto;
+        backdrop-filter: blur(10px);
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .form-group label {
+        font-weight: bold;
+        color: white;
+      }
+
+      .form-group textarea {
+        height: 100px;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.9);
+        resize: vertical;
+      }
+
+      .credentials-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .credential-input {
+        display: grid;
+        grid-template-columns: 2fr 2fr 1fr auto;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .add-credential {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        padding: 0;
+      }
+
+      #imagePreview {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      #imagePreview img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+      }
+
+      .mint-button {
+        background: linear-gradient(45deg, #23d5ab, #23a6d5);
+        color: white;
+        font-weight: bold;
+        padding: 15px 30px;
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .mint-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(35, 213, 171, 0.4);
+      }
     </style>
   </head>
   <body>
@@ -899,6 +992,37 @@
       <div>
         <input type="text" id="checkAddress" placeholder="Enter address to check">
         <button onclick="checkVerification()">Check Verification</button>
+      </div>
+    </div>
+
+    <div class="nft-details-form">
+      <h2>Create Your Identity NFT</h2>
+      <div class="form-container">
+        <div class="form-group">
+          <label for="nftName">Full Name</label>
+          <input type="text" id="nftName" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label for="nftDescription">Bio</label>
+          <textarea id="nftDescription" placeholder="Tell us about yourself"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="nftImage">Profile Image (URL)</label>
+          <input type="url" id="nftImage" placeholder="Enter image URL">
+          <div id="imagePreview"></div>
+        </div>
+        <div class="form-group">
+          <label>Credentials</label>
+          <div class="credentials-container">
+            <div class="credential-input">
+              <input type="text" placeholder="Credential name" class="credential-name">
+              <input type="text" placeholder="Issuer" class="credential-issuer">
+              <input type="date" class="credential-date">
+              <button type="button" class="add-credential">+</button>
+            </div>
+          </div>
+        </div>
+        <button onclick="mintIdentityNFT()" class="mint-button">Mint Identity NFT</button>
       </div>
     </div>
 
@@ -1181,6 +1305,81 @@
 
         // Initialize chart when page loads
         window.addEventListener('load', initializeChart);
+
+        // Handle image preview
+        document.getElementById('nftImage').addEventListener('input', function(e) {
+          const preview = document.getElementById('imagePreview');
+          const imageUrl = e.target.value;
+          
+          if (imageUrl) {
+            preview.innerHTML = `<img src="${imageUrl}" onerror="this.src='placeholder.png'">`;
+          } else {
+            preview.innerHTML = '';
+          }
+        });
+
+        // Handle adding more credential fields
+        document.querySelector('.add-credential').addEventListener('click', function() {
+          const container = document.querySelector('.credentials-container');
+          const newCredential = document.createElement('div');
+          newCredential.className = 'credential-input';
+          newCredential.innerHTML = `
+            <input type="text" placeholder="Credential name" class="credential-name">
+            <input type="text" placeholder="Issuer" class="credential-issuer">
+            <input type="date" class="credential-date">
+            <button type="button" onclick="this.parentElement.remove()" class="add-credential">-</button>
+          `;
+          container.appendChild(newCredential);
+        });
+
+        async function mintIdentityNFT() {
+          if (!userAccount) {
+            alert('Please connect your wallet first!');
+            return;
+          }
+
+          const name = document.getElementById('nftName').value;
+          const description = document.getElementById('nftDescription').value;
+          const image = document.getElementById('nftImage').value;
+          
+          const credentials = Array.from(document.querySelectorAll('.credential-input')).map(input => ({
+            name: input.querySelector('.credential-name').value,
+            issuer: input.querySelector('.credential-issuer').value,
+            date: input.querySelector('.credential-date').value
+          }));
+
+          const metadata = {
+            name,
+            description,
+            image,
+            attributes: {
+              credentials,
+              verificationDate: new Date().toISOString()
+            }
+          };
+
+          try {
+            // Upload metadata to IPFS
+            const response = await fetch('/api/identity/mint', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                address: userAccount,
+                metadata
+              })
+            });
+
+            const data = await response.json();
+            if (data.error) throw new Error(data.error);
+
+            alert('Identity NFT minted successfully!');
+          } catch (error) {
+            console.error(error);
+            alert('Failed to mint NFT: ' + error.message);
+          }
+        }
     </script>
   </body>
 </html>
