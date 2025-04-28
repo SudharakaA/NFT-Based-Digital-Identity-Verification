@@ -11,6 +11,7 @@ const initializeWebSocket = (server) => {
         
         ws.on('close', () => {
             clients.delete(ws);
+            
         });
 
         ws.on('error', (error) => {
