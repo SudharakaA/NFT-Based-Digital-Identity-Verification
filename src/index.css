@@ -1,0 +1,131 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --radius: 0.5rem;
+    
+    /* Custom blockchain colors */
+    --blockchain-400: 147 197 253;
+    --blockchain-500: 59 130 246;
+    --blockchain-600: 37 99 235;
+    --nft-400: 251 146 60;
+    --nft-500: 249 115 22;
+    --nft-600: 234 88 12;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, #0c1425 0%, #1a1b3a 50%, #2d1b69 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .blockchain-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .nft-gradient {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .glow-border {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+  }
+}
+
+@layer utilities {
+  .text-blockchain-400 {
+    color: rgb(147 197 253);
+  }
+  .text-blockchain-500 {
+    color: rgb(59 130 246);
+  }
+  .text-blockchain-600 {
+    color: rgb(37 99 235);
+  }
+  .text-nft-400 {
+    color: rgb(251 146 60);
+  }
+  .text-nft-500 {
+    color: rgb(249 115 22);
+  }
+  .text-nft-600 {
+    color: rgb(234 88 12);
+  }
+  .bg-blockchain-500 {
+    background-color: rgb(59 130 246);
+  }
+  .bg-blockchain-600 {
+    background-color: rgb(37 99 235);
+  }
+  .bg-nft-500 {
+    background-color: rgb(249 115 22);
+  }
+  .bg-nft-600 {
+    background-color: rgb(234 88 12);
+  }
+  .from-blockchain-500 {
+    --tw-gradient-from: rgb(59 130 246);
+  }
+  .from-blockchain-600 {
+    --tw-gradient-from: rgb(37 99 235);
+  }
+  .to-nft-500 {
+    --tw-gradient-to: rgb(249 115 22);
+  }
+  .to-nft-600 {
+    --tw-gradient-to: rgb(234 88 12);
+  }
+}
